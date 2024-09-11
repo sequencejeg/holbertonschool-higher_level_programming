@@ -8,8 +8,8 @@ Objectives:
 - What are indexing and slicing in Python
 - What is the official Python coding style and how to check your code with pycodestyle
 
-# Requirements
-Python Scripts:
+Requirements:
+
 - Allowed editors: vi, vim, emacs
 - All your files will be interpreted/compiled on Ubuntu 20.04 LTS using python3 (version 3.8.*)
 - All your files should end with a new line
@@ -39,9 +39,9 @@ Objectives:
 - What’s a traceback
 - What are the arithmetic operators and how to use them
 
-# Requirements
-Python Scripts
--Allowed editors: vi, vim, emacs
+Requirements:
+
+- Allowed editors: vi, vim, emacs
 - All your files will be interpreted/compiled on Ubuntu 20.04 LTS using python (version 3.8.*)
 - All your files should end with a new line
 - The first line of all your files should be exactly #!/usr/bin/python3
@@ -62,8 +62,8 @@ Objectives:
 - How to prevent code in your script from being executed when imported
 - How to use command line arguments with your Python programs
 
-# Requirements
-Python Scripts
+Requirements:
+
 - Allowed editors: vi, vim, emacs
 - All your files will be interpreted/compiled on Ubuntu 22.04 LTS using python3 (version 3.10.*)
 - All your files should end with a new line
