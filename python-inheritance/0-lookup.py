@@ -1,8 +1,11 @@
-#!usr/bin/python3
-"""This module contains a function 
-    that returns the list of available
-    attributes and methods of an object.
+#!/usr/bin/python3
 """
+This module contains the lookup function
+
+
+"""
+
+
 def lookup(obj):
     """The `lookup` function returns a list of attributes and methods of the input object.
     :param obj: The `obj` parameter in the `lookup` function is expected to be any Python object for
