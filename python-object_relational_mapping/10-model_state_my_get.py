@@ -1,35 +1,25 @@
 #!/usr/bin/python3
-"""
-This script prints the State object with the name passed as argument.
-"""
+
+'''This script prints all states that has a letter a'''
 
 import sys
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import Session
+from sqlalchemy import (create_engine)
 from model_state import Base, State
 
 
 if __name__ == "__main__":
-    """
-    On the 'if' condition below, we ensure the script runs only when
-    executed directly, and not when imported as a module.
-    """
-    user_name = sys.argv[1]
-    password = sys.argv[2]
-    db_name = sys.argv[3]
+    engine = create_engine('mysql+mysqldb://{}:{}@localhost/{}'
+                           .format(sys.argv[1], sys.argv[2], sys.argv[3]),
+                           pool_pre_ping=True)
+    Base.metadata.create_all(engine)
 
-    """
-    Below we create engine that connects to the core (MySQL).
-    """
-    engine = create_engine(
-        f"mysql+mysqldb://{user_name}:{password}@localhost:3306/{db_name}"
-    )
+    session = Session(engine)
+    state_name = sys.argv[4]
+    state = session.query(State).filter(State.name == state_name).first()
 
-    Session = sessionmaker(bind=engine)
-    session = Session()
-
-    state = session.query(State).filter(State.name.like(sys.argv[4])).first()
     if state:
         print(state.id)
     else:
-        print("Not found")
+        print('Not found')
+    session.close()
