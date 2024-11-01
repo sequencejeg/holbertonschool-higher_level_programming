@@ -1,28 +1,36 @@
 #!/usr/bin/python3
-
 """
-This script retrieves all the states from
-the database whose name contains the letter 'a',
-and prints their id and name.
+This script lists all State objects that contain the letter a
+from the database hbtn_0e_6_usa
+It takes 3 args: MySQL username, password, and database name.
 """
 
 import sys
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
 from model_state import Base, State
-from sqlalchemy import (create_engine)
-from sqlalchemy.orm import Session
 
 
 if __name__ == "__main__":
-    engine = create_engine('mysql+mysqldb://{}:{}@localhost/{}'.format(
-        sys.argv[1], sys.argv[2], sys.argv[3]), pool_pre_ping=True)
+    """
+    On the 'if' condition below, we ensure the script runs only
+    when executed directly, and not when imported as a module.
+    """
+    user_name = sys.argv[1]
+    password = sys.argv[2]
+    db_name = sys.argv[3]
 
-    Base.metadata.create_all(engine)
+    """
+    Here we create engine that connects to the core (MySQL).
+    """
+    engine = create_engine(
+        f"mysql+mysqldb://{user_name}:{password}@localhost:3306/{db_name}"
+    )
 
-    session = Session(engine)
+    Session = sessionmaker(bind=engine)
+    session = Session()
 
-    session = Session(engine)
-    for state in session.query(State).order_by(State.id).all():
-        if 'a' in state.name:
-            print("{}: {}".format(state.id, state.name))
-
-    session.close()
+    state = session.query(State).filter(State.name.like('%a%'))
+    for states in state:
+        if state:
+            print(f"{states.id}: {states.name}")

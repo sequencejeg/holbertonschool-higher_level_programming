@@ -1,28 +1,23 @@
 #!/usr/bin/python3
-
 """
-This module defines the State class,
-which represents a state in the database.
+This script contains the class definition of a State
+and an instance Base = declarative_base()
 """
-
 
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
-
 
 Base = declarative_base()
 
 
 class State(Base):
     """
-    Represents a state in the database.
-
-    Attributes:
-        id (int): The unique identifier of the state.
-        name (str): The name of the state.
+    Above we declare the class State.
     """
     __tablename__ = 'states'
 
-    id = Column('id', Integer, unique=True,
-                autoincrement=True, nullable=False, primary_key=True)
-    name = Column('name', String(128), nullable=False)
+    """
+    Here we are defining columns for the class State.
+    """
+    id = Column(Integer, primary_key=True, nullable=False, autoincrement=True)
+    name = Column(String(128), nullable=False)
